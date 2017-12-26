@@ -25,54 +25,55 @@ Menu.prototype.render = function () {
   var result = '<ul class="' + this.className + '" id="' + this.id + '">';
 
   for (var i = 0; i < this.items.length; i++) {
-    var itemMenu = new MenuParentItem(this.items[i].href, this.items[i].name, this.items[i].child);
-    result += itemMenu.render();
+    var item = new MenuItem(this.items[i].href, this.items[i].name, this.items[i].child);
+    result += item.render();
   }
 
   result += '</ul>';
   return result;
 };
 
-// описываем класс родительских пунктов меню
-function MenuParentItem(my_href, my_name, my_child){
+// Описываем класс пунктов меню
+function MenuItem(my_href, my_name, my_child){
   Container.call(this);
   this.href = my_href;
   this.name = my_name;
   this.child = my_child;
 }
 
-MenuParentItem.prototype = Object.create(Container.prototype);
-MenuParentItem.prototype.constructor = MenuParentItem;
+MenuItem.prototype = Object.create(Container.prototype);
+MenuItem.prototype.constructor = MenuItem;
 
-MenuParentItem.prototype.render = function () {
+MenuItem.prototype.render = function () {
+  var res = '';
   var item = '';
-  var itemParentMenu = new MenuItem(this.href, this.name);
 
-  item += '<li>';
-  item += itemParentMenu.render();
+  item = new MenuChildItem(this.href, this.name);
+  res += '<li>';
+  res += item.render();
   if (Array.isArray(this.child)) {
-    item += '<ul>';
+    res += '<ul>';
     for (var i = 0; i < this.child.length; i++) {
-      var itemMenu = new MenuParentItem(this.child[i].href, this.child[i].name, this.child[i].child);
-      item += itemMenu.render();
+      item = new MenuItem(this.child[i].href, this.child[i].name, this.child[i].child);
+      res += item.render();
     }
-    item += '</ul>';
+    res += '</ul>';
   }
-  item += '</li>'
-  return item;
+  res += '</li>'
+  return res;
 };
 
-// Описываем класс пунктов меню
-function MenuItem(my_href, my_name) {
+// Описываем класс создания ссылки пункта меню
+function MenuChildItem(my_href, my_name) {
   Container.call(this);
   this.href = my_href;
   this.name = my_name;
 }
 
-MenuItem.prototype = Object.create(Container.prototype);
-MenuItem.prototype.constructor = MenuItem;
+MenuChildItem.prototype = Object.create(Container.prototype);
+MenuChildItem.prototype.constructor = MenuChildItem;
 
-MenuItem.prototype.render = function () {
+MenuChildItem.prototype.render = function () {
   return '<a href="' + this.href + '">' + this.name + '</a>';
 };
 
@@ -146,8 +147,6 @@ var arMenuItems = [
 window.onload = function () {
 
   var menu = new Menu('my_menu', 'my_class', arMenuItems);
-
-  console.log(menu);
 
   document.getElementById('menu').innerHTML = menu.render();
 
