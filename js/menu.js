@@ -31,7 +31,13 @@ Menu.prototype.render = function () {
 
   result += '</ul>';
   return result;
-};
+}
+
+Menu.prototype.remove = function(){
+  var element = document.getElementById(this.id);
+
+  element.remove();
+}
 
 // Описываем класс пунктов меню
 function MenuItem(my_href, my_name, my_child){
@@ -48,34 +54,33 @@ MenuItem.prototype.render = function () {
   var res = '';
   var item = '';
 
-  item = new MenuChildItem(this.href, this.name);
+  item = new MenuItem();
+
   res += '<li>';
-  res += item.render();
+  res += item.bildLink(this.href, this.name);
+
   if (Array.isArray(this.child)) {
+
     res += '<ul>';
+
     for (var i = 0; i < this.child.length; i++) {
       item = new MenuItem(this.child[i].href, this.child[i].name, this.child[i].child);
       res += item.render();
+
     }
+
     res += '</ul>';
+
   }
+
   res += '</li>'
+
   return res;
 };
 
-// Описываем класс создания ссылки пункта меню
-function MenuChildItem(my_href, my_name) {
-  Container.call(this);
-  this.href = my_href;
-  this.name = my_name;
+MenuItem.prototype.bildLink = function(my_href, my_name){
+  return '<a href="' + my_href + '">' + my_name + '</a>';
 }
-
-MenuChildItem.prototype = Object.create(Container.prototype);
-MenuChildItem.prototype.constructor = MenuChildItem;
-
-MenuChildItem.prototype.render = function () {
-  return '<a href="' + this.href + '">' + this.name + '</a>';
-};
 
 var arMenuItems = [
   {
