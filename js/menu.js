@@ -89,17 +89,17 @@ MenuItem.prototype.bildLink = function(href, name){
 function removeMenu(e){
   e.preventDefault();
   var menu = new Menu();
-  menu.remove('my_menu');
+  menu.remove(idMenuList);
 }
 
 function addMenu(e) {
   e.preventDefault();
 
-  var menu = new Menu('my_menu', 'my_class', arMenuItems);
+  var menu = new Menu(idMenuList, classMenuList, arMenuItems);
 
   renderMenu = menu.render();
 
-  document.getElementById('menu').innerHTML = renderMenu;
+  document.getElementById(idMenuContainer).innerHTML = renderMenu;
 }
 
 /* --- variables --- */
@@ -169,6 +169,9 @@ var arMenuItems = [
     child: false,
   }
 ];
+var idMenuContainer = 'menu';
+var idMenuList = 'menu-list';
+var classMenuList = 'menu-list';
 
 window.onload = function () {
 
