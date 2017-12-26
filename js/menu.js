@@ -85,8 +85,8 @@ MenuItem.prototype.bildSubItem = function(arChild){
   return res;
 }
 
-MenuItem.prototype.bildLink = function(my_href, my_name){
-  return '<a href="' + my_href + '">' + my_name + '</a>';
+MenuItem.prototype.bildLink = function(href, name){
+  return '<a href="' + href + '">' + name + '</a>';
 }
 
 /* --- variables --- */
