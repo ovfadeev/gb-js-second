@@ -82,6 +82,7 @@ MenuItem.prototype.bildLink = function(my_href, my_name){
   return '<a href="' + my_href + '">' + my_name + '</a>';
 }
 
+/* --- variables --- */
 var arMenuItems = [
   {
     href: '/',
@@ -153,6 +154,8 @@ window.onload = function () {
 
   var menu = new Menu('my_menu', 'my_class', arMenuItems);
 
-  document.getElementById('menu').innerHTML = menu.render();
+  renderMenu = menu.render();
+
+  document.getElementById('menu').innerHTML = renderMenu;
 
 };
