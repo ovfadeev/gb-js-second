@@ -51,30 +51,39 @@ MenuItem.prototype = Object.create(Container.prototype);
 MenuItem.prototype.constructor = MenuItem;
 
 MenuItem.prototype.render = function () {
+  return this.bildItem(this.href, this.name, this.child);
+};
+
+MenuItem.prototype.bildItem = function(href, name, child){
   var res = '';
   var item = '';
 
   res += '<li>';
-  res += this.bildLink(this.href, this.name);
+  res += this.bildLink(href, name);
 
-  if (Array.isArray(this.child)) {
+  if (Array.isArray(child)) {
 
-    res += '<ul>';
-
-    for (var i = 0; i < this.child.length; i++) {
-      item = new MenuItem(this.child[i]);
-      res += item.render();
-
-    }
-
-    res += '</ul>';
+    res += this.bildSubItem(child);
 
   }
 
-  res += '</li>'
+  res += '</li>';
+  return res;
+}
+
+MenuItem.prototype.bildSubItem = function(arChild){
+  var res = '';
+
+  res += '<ul>';
+
+  for (var i = 0; i < arChild.length; i++) {
+    res += this.bildItem(arChild[i].href, arChild[i].name, arChild[i].child);
+  }
+
+  res += '</ul>';
 
   return res;
-};
+}
 
 MenuItem.prototype.bildLink = function(my_href, my_name){
   return '<a href="' + my_href + '">' + my_name + '</a>';
