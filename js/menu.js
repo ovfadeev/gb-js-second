@@ -88,7 +88,9 @@ MenuItem.prototype.bildLink = function(href, name){
 
 function removeMenu(e){
   e.preventDefault();
+
   var menu = new Menu();
+
   menu.remove(idMenuList);
 }
 
