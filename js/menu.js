@@ -86,6 +86,22 @@ MenuItem.prototype.bildLink = function(href, name){
   return '<a href="' + href + '">' + name + '</a>';
 }
 
+function removeMenu(e){
+  e.preventDefault();
+  var menu = new Menu();
+  menu.remove('my_menu');
+}
+
+function addMenu(e) {
+  e.preventDefault();
+
+  var menu = new Menu('my_menu', 'my_class', arMenuItems);
+
+  renderMenu = menu.render();
+
+  document.getElementById('menu').innerHTML = renderMenu;
+}
+
 /* --- variables --- */
 var arMenuItems = [
   {
@@ -156,10 +172,7 @@ var arMenuItems = [
 
 window.onload = function () {
 
-  var menu = new Menu('my_menu', 'my_class', arMenuItems);
-
-  renderMenu = menu.render();
-
-  document.getElementById('menu').innerHTML = renderMenu;
+  document.getElementById('menu-remove').addEventListener('click', removeMenu);
+  document.getElementById('menu-add').addEventListener('click', addMenu);
 
 };
