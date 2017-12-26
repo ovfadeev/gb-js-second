@@ -9,6 +9,12 @@ Container.prototype.render = function () {
   return this.htmlCode;
 };
 
+Container.prototype.remove = function(id){
+  var element = document.getElementById(id);
+
+  element.remove();
+}
+
 // Описываем класс меню
 function Menu(my_id, my_class, my_items) {
   Container.call(this);
@@ -31,12 +37,6 @@ Menu.prototype.render = function () {
 
   result += '</ul>';
   return result;
-}
-
-Menu.prototype.remove = function(){
-  var element = document.getElementById(this.id);
-
-  element.remove();
 }
 
 // Описываем класс пунктов меню
