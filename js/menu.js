@@ -31,7 +31,7 @@ Menu.prototype.render = function () {
   var result = '<ul class="' + this.className + '" id="' + this.id + '">';
 
   for (var i = 0; i < this.items.length; i++) {
-    var item = new MenuItem(this.items[i].href, this.items[i].name, this.items[i].child);
+    var item = new MenuItem(this.items[i]);
     result += item.render();
   }
 
@@ -40,11 +40,11 @@ Menu.prototype.render = function () {
 }
 
 // Описываем класс пунктов меню
-function MenuItem(my_href, my_name, my_child){
+function MenuItem(objItem){
   Container.call(this);
-  this.href = my_href;
-  this.name = my_name;
-  this.child = my_child;
+  this.href = objItem.href;
+  this.name = objItem.name;
+  this.child = objItem.child;
 }
 
 MenuItem.prototype = Object.create(Container.prototype);
@@ -54,17 +54,15 @@ MenuItem.prototype.render = function () {
   var res = '';
   var item = '';
 
-  item = new MenuItem();
-
   res += '<li>';
-  res += item.bildLink(this.href, this.name);
+  res += this.bildLink(this.href, this.name);
 
   if (Array.isArray(this.child)) {
 
     res += '<ul>';
 
     for (var i = 0; i < this.child.length; i++) {
-      item = new MenuItem(this.child[i].href, this.child[i].name, this.child[i].child);
+      item = new MenuItem(this.child[i]);
       res += item.render();
 
     }
