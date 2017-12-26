@@ -55,32 +55,31 @@ MenuItem.prototype.render = function () {
 };
 
 MenuItem.prototype.bildItem = function(href, name, child){
-  var res = '';
   var item = '';
 
-  res += '<li>';
-  res += this.bildLink(href, name);
+  item += '<li>';
+  item += this.bildLink(href, name);
 
   if (Array.isArray(child)) {
-    res += this.bildSubItem(child);
+    item += this.bildSubItem(child);
   }
 
-  res += '</li>';
-  return res;
+  item += '</li>';
+  return item;
 }
 
 MenuItem.prototype.bildSubItem = function(arChild){
-  var res = '';
+  var subItem = '';
 
-  res += '<ul>';
+  subItem += '<ul>';
 
   for (var i = 0; i < arChild.length; i++) {
-    res += this.bildItem(arChild[i].href, arChild[i].name, arChild[i].child);
+    subItem += this.bildItem(arChild[i].href, arChild[i].name, arChild[i].child);
   }
 
-  res += '</ul>';
+  subItem += '</ul>';
 
-  return res;
+  return subItem;
 }
 
 MenuItem.prototype.bildLink = function(href, name){
