@@ -62,9 +62,7 @@ MenuItem.prototype.bildItem = function(href, name, child){
   res += this.bildLink(href, name);
 
   if (Array.isArray(child)) {
-
     res += this.bildSubItem(child);
-
   }
 
   res += '</li>';
