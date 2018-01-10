@@ -1,0 +1,12 @@
+.wrapper {
+  width: 1160px;
+  margin: 50px auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+.menu ul li{
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;
+}

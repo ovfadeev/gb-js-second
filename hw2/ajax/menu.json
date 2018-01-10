@@ -1,0 +1,84 @@
+{
+  "result": true,
+  "menu": [
+    {
+      "link": "/",
+      "text": "Главная",
+      "child": false
+    },
+    {
+      "link": "/catalogue/",
+      "text": "Каталог",
+      "child": [
+        {
+          "link": "/catalogue/velosipedy/",
+          "text": "Велосипеды",
+          "child": [
+            {
+              "link": "/catalogue/velosipedy/detskie/",
+              "text": "Для детей",
+              "child": [
+                {
+                  "link": "/catalogue/velosipedy/detskie/malchiki/",
+                  "text": "Для мальчиков",
+                  "child": false
+                },
+                {
+                  "link": "/catalogue/velosipedy/devochki/",
+                  "text": "Для девочек",
+                  "child": false
+                }
+              ]
+            },
+            {
+              "link": "/catalogue/velosipedy/vzroslie/",
+              "text": "Для взрослых",
+              "child": false
+            }
+          ]
+        },
+        {
+          "link": "/catalogue/samokaty/",
+          "text": "Самокаты",
+          "child": [
+            {
+              "link": "/catalogue/samokaty/malchiki/",
+              "text": "Для мальчиков",
+              "child": false
+            },
+            {
+              "link": "/catalogue/samokaty/devochki/",
+              "text": "Для девочек",
+              "child": false
+            }
+          ]
+        },
+        {
+          "link": "/catalogue/zapchasti/",
+          "text": "Запчасти",
+          "child": false
+        }
+      ]
+    },
+    {
+      "link": "/sale/",
+      "text": "Распродажа",
+      "child": false
+    },
+    {
+      "link": "/contacts/",
+      "text": "Контакты",
+      "child": false
+    },
+    {
+      "link": "/about/",
+      "text": "О компании",
+      "child": false
+    },
+    {
+      "link": "/news/",
+      "text": "Новости",
+      "child": false
+    }
+  ]
+}
