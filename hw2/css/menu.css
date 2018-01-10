@@ -6,15 +6,7 @@
   line-height: 1;
 }
 .menu ul li{
+  display: inline-block;
+  vertical-align: middle;
   margin: 10px 0;
-}
-.action {
-  margin-bottom: 50px;
-}
-.action a {
-  padding: 10px;
-  background-color: green;
-  color: #fff;
-  margin: 5px;
-  text-decoration: none;
 }

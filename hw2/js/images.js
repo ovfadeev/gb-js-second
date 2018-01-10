@@ -16,7 +16,7 @@ Container.prototype.remove = function(id){
 }
 
 // Описываем класс ajax запроса
-function getJson(linkAjax) {
+function GetJson(linkAjax) {
   Container.call(this);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', linkAjax, false);
@@ -29,18 +29,18 @@ function getJson(linkAjax) {
   }
 };
 
-getJson.prototype.constructor = getJson;
+GetJson.prototype.constructor = GetJson;
 
-getJson.prototype.render = function(){
+GetJson.prototype.render = function(){
   var res = JSON.parse(this.ajaxResult);
   if (res.result !== false){
-    return res.menu;
+    return res.images;
   }
   return false;
 }
 
 // Описываем класс меню
-function Menu(my_id, my_class, my_items) {
+function Gallery(my_id, my_class, my_items) {
   Container.call(this);
 
   this.id = my_id;
@@ -48,14 +48,14 @@ function Menu(my_id, my_class, my_items) {
   this.items = my_items;
 }
 
-Menu.prototype = Object.create(Container.prototype);
-Menu.prototype.constructor = Menu;
+Gallery.prototype = Object.create(Container.prototype);
+Gallery.prototype.constructor = Gallery;
 
-Menu.prototype.render = function () {
+Gallery.prototype.render = function () {
   var result = '<ul class="' + this.className + '" id="' + this.id + '">';
 
   for (var i = 0; i < this.items.length; i++) {
-    var item = new MenuItem(this.items[i]);
+    var item = new ImageItem(this.items[i]);
     result += item.render();
   }
 
@@ -63,90 +63,52 @@ Menu.prototype.render = function () {
   return result;
 }
 
-// Описываем класс пунктов меню
-function MenuItem(objItem){
+// Описываем класс галереи
+function ImageItem(objItem){
   Container.call(this);
-  this.link = objItem.link;
-  this.text = objItem.text;
-  this.child = objItem.child;
+  this.link = objItem.src;
+  this.text = objItem.name;
+  this.linkPreview = objItem.preview;
 }
 
-MenuItem.prototype = Object.create(Container.prototype);
-MenuItem.prototype.constructor = MenuItem;
+ImageItem.prototype = Object.create(Container.prototype);
+ImageItem.prototype.constructor = ImageItem;
 
-MenuItem.prototype.render = function () {
-  return this.bildItem(this.link, this.text, this.child);
+ImageItem.prototype.render = function () {
+  return this.bildItem(this.link, this.linkPreview, this.text);
 };
 
-MenuItem.prototype.bildItem = function(link, text, child){
+ImageItem.prototype.bildItem = function(link, linkPreview, text){
   var item = '';
 
   item += '<li>';
-  item += this.bildLink(link, text);
-
-  if (Array.isArray(child)) {
-    item += this.bildSubItem(child);
-  }
-
+  item += '<a href="' + link + '" download="' + text + '"><img src="' + linkPreview + '"></a>';
   item += '</li>';
   return item;
 }
 
-MenuItem.prototype.bildSubItem = function(arChild){
-  var subItem = '';
-
-  subItem += '<ul>';
-
-  for (var i = 0; i < arChild.length; i++) {
-    subItem += this.bildItem(arChild[i].link, arChild[i].text, arChild[i].child);
-  }
-
-  subItem += '</ul>';
-
-  return subItem;
-}
-
-MenuItem.prototype.bildLink = function(link, text){
-  return '<a href="' + link + '">' + text + '</a>';
-}
-
-function removeMenu(e){
-  e.preventDefault();
-
-  var menu = new Menu();
-
-  menu.remove(idMenuList);
-}
-
-function addMenu(e) {
-  e.preventDefault();
-
-  var menuJson = new getJson(linkAjaxMenu);
-  arMenuItems = menuJson.render();
-
-  console.log(arMenuItems);
-
-  if (arMenuItems !== false){
-    var menu = new Menu(idMenuList, classMenuList, arMenuItems);
-
-    renderMenu = menu.render();
-
-    document.getElementById(idMenuContainer).innerHTML = renderMenu;
-  } else {
-    alert('Error menu items');
-  }
-}
-
 /* --- variables --- */
-var arMenuItems;
-var linkAjaxMenu = "./ajax/menu.json";
-var idMenuContainer = 'menu';
-var idMenuList = 'menu-list';
-var classMenuList = 'menu-list';
+var arImagesItems;
+var linkAjaxImages = "./ajax/images.json";
+var idGalleryContainer = 'gallery';
+var idGalleryList = 'images-list';
+var classGalleryList = 'images-list';
 
 window.onload = function () {
 
-  document.getElementById('menu-remove').addEventListener('click', removeMenu);
-  document.getElementById('menu-add').addEventListener('click', addMenu);
+  var imageJson = new GetJson(linkAjaxImages);
+  arImagesItems = imageJson.render();
+
+  console.log(arImagesItems);
+
+  if (arImagesItems !== false){
+    var gallery = new Gallery(idGalleryList, classGalleryList, arImagesItems);
+
+    renderGallery = gallery.render();
+
+    document.getElementById(idGalleryContainer).innerHTML = renderGallery;
+  } else {
+    alert('Error images items');
+  }
 
 };

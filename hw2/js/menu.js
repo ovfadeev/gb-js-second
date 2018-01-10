@@ -16,7 +16,7 @@ Container.prototype.remove = function(id){
 }
 
 // Описываем класс ajax запроса
-function getJson(linkAjax) {
+function GetJson(linkAjax) {
   Container.call(this);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', linkAjax, false);
@@ -29,9 +29,9 @@ function getJson(linkAjax) {
   }
 };
 
-getJson.prototype.constructor = getJson;
+GetJson.prototype.constructor = GetJson;
 
-getJson.prototype.render = function(){
+GetJson.prototype.render = function(){
   var res = JSON.parse(this.ajaxResult);
   if (res.result !== false){
     return res.menu;
@@ -121,10 +121,8 @@ function removeMenu(e){
 function addMenu(e) {
   e.preventDefault();
 
-  var menuJson = new getJson(linkAjaxMenu);
+  var menuJson = new GetJson(linkAjaxMenu);
   arMenuItems = menuJson.render();
-
-  console.log(arMenuItems);
 
   if (arMenuItems !== false){
     var menu = new Menu(idMenuList, classMenuList, arMenuItems);
