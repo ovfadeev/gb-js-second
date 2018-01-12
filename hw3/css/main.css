@@ -1,0 +1,54 @@
+.wrapper {
+  width: 1160px;
+  margin: 50px auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+.wrapper form {
+	text-align: center;
+	width: 230px;
+}
+.wrapper form .form-input {
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+}
+.wrapper form .form-input.error {
+	border-color: red;
+}
+.wrapper form .form-input input {
+	padding: 10px;
+	font-family: 'Arial', sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1;
+	width: 200px;
+	border: 0;
+	outline: none;
+}
+.wrapper form .form-submit input[type="submit"] {
+	padding: 10px;
+	font-family: 'Arial', sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1;
+	width: 200px;
+	border: 0;
+	outline: none;
+	background-color: green;
+	color: #fff;
+}
+.wrapper form .form-submit input[type="submit"]:hover {
+	background-color: blue;
+}
+.wrapper form .form-input textarea {
+	padding: 10px;
+	font-family: 'Arial', sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1;
+	width: 200px;
+	border: 0px;
+	resize: none;
+	outline: none;
+}
