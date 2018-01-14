@@ -8,21 +8,21 @@
 </head>
 <body>
 	<div class="wrapper">
-	    <form action="">
+	    <form id="form-feedback" action="">
 	    	<div class="form-input">
-	    		<input id="js-form-name" type="text" name="name" value="" placeholder="Введите имя" />
+	    		<input type="text" name="name" value="" placeholder="Введите имя" data-validation="name" />
 	    	</div>
 	    	<div class="form-input">
-	    		<input id="js-form-email" type="email" name="email" value="" placeholder="Введите email" />
+	    		<input type="email" name="email" value="" placeholder="Введите email" data-validation="email" />
 	    	</div>
 	    	<div class="form-input">
-	    		<input id="js-form-phone" type="tel" name="phone" value="" placeholder="Введите телефон" />
+	    		<input type="tel" name="phone" value="" placeholder="Введите телефон +7(000)000-0000" data-validation="phone" />
 	    	</div>
 	    	<div class="form-input">
-	    		<textarea id="js-form-message" name="text" placeholder="Сообщение"></textarea>
+	    		<textarea name="text" placeholder="Сообщение" data-validation="text"></textarea>
 	    	</div>
 	    	<div class="form-submit">
-	    		<input id="js-form-submit" type="submit" name="submit" value="Send" />
+	    		<input type="submit" name="submit" value="Send" id="js-form-submit" />
 	    	</div>
 	    </form>
 	</div>
