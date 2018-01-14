@@ -1,0 +1,20 @@
+.wrapper {
+  width: 1160px;
+  margin: 50px auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+.menu ul li{
+  margin: 10px 0;
+}
+.action {
+  margin-bottom: 50px;
+}
+.action a {
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  margin: 5px;
+  text-decoration: none;
+}
