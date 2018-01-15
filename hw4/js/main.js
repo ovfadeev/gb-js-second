@@ -139,7 +139,7 @@ var moduleApp = {
                 divLoad.append(newHtml);
                 divLoad.show();
               }
-            }else{}
+            }
           },
           error: function(){}
         });
