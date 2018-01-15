@@ -1,0 +1,92 @@
+.wrapper {
+  width: 1160px;
+  margin: 50px auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+/* tabs */
+.wrapper .tabs-list {
+
+}
+.wrapper .tabs-list ul {
+  padding: 0;
+  margin: 20px 0;
+}
+.wrapper .tabs-list ul li {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .tabs-list ul li a {
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px;
+  background-color: blue;
+}
+.wrapper .tabs-list ul li a.active {
+  background-color: red;
+}
+/* form */
+.wrapper form {
+  text-align: center;
+  width: 280px;
+  margin: 50px 0;
+}
+.wrapper form .form-input {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+.wrapper form .form-input.show-error {
+  border-color: red;
+}
+.wrapper form .form-input input {
+  padding: 10px;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1;
+  width: 250px;
+  border: 0;
+  outline: none;
+}
+.wrapper form .form-submit input[type="submit"] {
+  padding: 10px;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1;
+  width: 200px;
+  border: 0;
+  outline: none;
+  background-color: green;
+  color: #fff;
+}
+.wrapper form .form-submit input[type="submit"]:hover {
+  background-color: blue;
+}
+.wrapper form .form-input textarea {
+  padding: 10px;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1;
+  width: 250px;
+  border: 0px;
+  resize: none;
+  outline: none;
+}
+.wrapper form .form-input .load {
+  display: none;
+}
+.wrapper form .form-input .load ul {
+}
+.wrapper form .form-input .load ul li{
+  text-align: left;
+  margin: 10px;
+}
