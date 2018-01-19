@@ -11,17 +11,13 @@ function Basket() {
     this.classDeleteBasketItem = 'remove-item';
 
     this.basketItems = [];
-    this.collectBasketItems(); // Загружаем товары, которые уже добавлены (json файл)
+    this.collectBasketItems();
 }
 
 Basket.prototype = Object.create(Container.prototype);
 Basket.prototype.constructor = Basket;
 
-//
-// TODO посмотреть метод render!
-//
-
-Basket.prototype.render = function (root) { // Генерация базовой разметки
+Basket.prototype.render = function (root) {
     var basketDiv = $('<div />', {
         id: this.id,
         text: 'Корзина:'
@@ -35,7 +31,7 @@ Basket.prototype.render = function (root) { // Генерация базовой
     basketDiv.appendTo(root);
 };
 
-Basket.prototype.updateBasketItem = function (item) {
+Basket.prototype.update = function (item) {
   var update = false;
   for(i = 0; i < this.basketItems.length; i++){
     if (this.basketItems[i].id == item.id){
@@ -55,7 +51,7 @@ Basket.prototype.add = function (idProduct, quantity, price, name) {
       "price": price
     };
 
-    if (this.updateBasketItem(basketItem) === false){
+    if (this.update(basketItem) === false){
       this.basketItems.push(basketItem);
     }
     this.refresh();
@@ -63,11 +59,13 @@ Basket.prototype.add = function (idProduct, quantity, price, name) {
 
 Basket.prototype.delete = function (idProduct) {
   for (var index in this.basketItems) {
+    console.log(index);
     if (this.basketItems[index].id == idProduct){
-      this.basketItems.splice(index);
+      this.basketItems.splice(index, 1);
       break;
     }
   }
+
   this.refresh();
 };
 

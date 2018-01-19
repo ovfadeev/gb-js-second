@@ -1,9 +1,7 @@
 var moduleApp = {
-  'addBasket':function(){
+  'checkBasket':function(){
     var basket = new Basket();
-
     basket.render('.basket-list');
-    // console.log(basket);
 
     $('.buyme').on('click', function () {
         var idPruduct = parseInt($(this).attr('data-id-product'));
@@ -13,9 +11,6 @@ var moduleApp = {
 
         basket.add(idPruduct, quantity, price, name);
     });
-  },
-  'removeItemBasket':function(){
-    var basket = new Basket();
 
     $('.basket-list').on('click', '.remove-item', function (e) {
         e.preventDefault();
@@ -27,6 +22,5 @@ var moduleApp = {
 }
 
 $(document).ready(function(){
-  moduleApp.addBasket();
-  moduleApp.removeItemBasket();
+  moduleApp.checkBasket();
 });
