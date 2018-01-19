@@ -116,7 +116,7 @@ Basket.prototype.htmlItem = function (item) {
   html += '<p>Количество: ' + item.quantity + '</p>';
   html += '<a href="#" data-id-product="' + item.id + '" class="' + this.classDeleteBasketItem + '">Удалить</a>';
   return html;
-}
+};
 
 Basket.prototype.collectBasketItems = function () {
   $.ajax({
