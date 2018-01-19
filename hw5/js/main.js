@@ -13,9 +13,20 @@ var moduleApp = {
 
         basket.add(idPruduct, quantity, price, name);
     });
+  },
+  'removeItemBasket':function(){
+    var basket = new Basket();
+
+    $('.basket-list').on('click', '.remove-item', function (e) {
+        e.preventDefault();
+        var idPruduct = parseInt($(this).attr('data-id-product'));
+
+        basket.delete(idPruduct);
+    });
   }
 }
 
 $(document).ready(function(){
   moduleApp.addBasket();
+  moduleApp.removeItemBasket();
 });

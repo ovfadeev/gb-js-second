@@ -5,15 +5,25 @@
   font-size: 16px;
   line-height: 1;
 }
-.basket-list {
-
-}
 .goods-list {
   margin: 50px 0;
 }
 .goods-list .good-item {
   display: inline-block;
   vertical-align: middle;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.basket-list {
+  border-bottom: 1px solid #000;
+}
+.basket-list .items-list {
+
+}
+.basket-list .items-list .item {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
 }

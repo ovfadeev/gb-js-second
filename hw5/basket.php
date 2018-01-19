@@ -14,6 +14,7 @@
   <div class="wrapper">
     <div class="basket-list"></div>
     <div class="goods-list">
+      <h2>Товары:</h2>
       <div class="good-item">
         <p class="name">Товар с ID 123</p>
         <p>Цена: 300 руб.</p>
