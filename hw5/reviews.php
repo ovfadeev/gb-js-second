@@ -13,13 +13,17 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="form-add-review">
-      <form>
-        <input type="text" name="name" value="" placeholder="Введите ваше имя">
-        <br/>
-        <input type="text" name="name" value="" placeholder="Введите ваше имя">
-      </form>
-    </div>
+    <form id="form-review" action="">
+      <div class="form-input">
+        <input type="text" name="name" value="" placeholder="Введите имя" data-validate="text" />
+      </div>
+      <div class="form-input">
+        <textarea name="text" placeholder="Сообщение" data-validate="text"></textarea>
+      </div>
+      <div class="form-submit">
+        <input type="submit" name="submit" value="Send" class="js-form-submit" />
+      </div>
+    </form>
     <div id="reviews"></div>
   </div>
 </body>
