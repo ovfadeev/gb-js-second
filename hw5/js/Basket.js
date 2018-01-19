@@ -76,7 +76,6 @@ Basket.prototype.refresh = function () {
           class: this.classBasketItemsList
       });
   var basketItemsDiv = $('.' + this.classBasketItems);
-
   var count = 0;
   var amount = 0;
 
@@ -89,10 +88,8 @@ Basket.prototype.refresh = function () {
       var itemDiv = $('<div />', {
         class: this.classBasketItem
       });
-      htmlItem += '<p>' + this.basketItems[index].name + '</p>';
-      htmlItem += '<p>' + this.basketItems[index].price + ' руб.</p>';
-      htmlItem += '<p>Количество: ' + this.basketItems[index].quantity + '</p>';
-      htmlItem += '<a href="#" data-id-product="' + this.basketItems[index].id + '" class="' + this.classDeleteBasketItem + '">Удалить</a>';
+
+      htmlItem += this.htmlItem(this.basketItems[index]);
 
       itemDiv.append(htmlItem);
       basketItemsListDiv.append(itemDiv);
@@ -110,6 +107,15 @@ Basket.prototype.refresh = function () {
   basketItemsDiv.append(basketItemsListDiv);
   basketItemsDiv.append(basketDataDiv);
 };
+
+Basket.prototype.htmlItem = function (item) {
+  var html = "";
+  html += '<p>' + item.name + '</p>';
+  html += '<p>' + item.price + ' руб.</p>';
+  html += '<p>Количество: ' + item.quantity + '</p>';
+  html += '<a href="#" data-id-product="' + item.id + '" class="' + this.classDeleteBasketItem + '">Удалить</a>';
+  return html;
+}
 
 Basket.prototype.collectBasketItems = function () {
   var countGoods = 0;
