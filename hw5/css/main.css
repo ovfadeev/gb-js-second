@@ -30,7 +30,7 @@
 .reviews {
 
 }
-.reviews-list {
+.reviews-wrapper {
   margin: 30px auto;
   width: 500px;
 }
@@ -39,7 +39,7 @@
   border: 1px solid #ccc;
   margin-bottom: 10px;
 }
-.reviews-moderation-list {
+.moderation-wrapper {
   margin: 30px auto;
   width: 500px;
 }

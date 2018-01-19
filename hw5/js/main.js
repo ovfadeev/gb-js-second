@@ -32,6 +32,18 @@ var moduleApp = {
           reviews.add(user, name, message);
         }
     });
+    $('#reviews').on('click', '.reviews-moderation-good', function (e){
+      e.preventDefault();
+      var idReview = parseInt($(this).attr('data-id-reviews'));
+
+      reviews.moderated(idReview);
+    });
+    $('#reviews').on('click', '.remove-item', function (e){
+      e.preventDefault();
+      var idReview = parseInt($(this).attr('data-id-reviews'));
+
+      reviews.delete(idReview);
+    });
   }
 }
 

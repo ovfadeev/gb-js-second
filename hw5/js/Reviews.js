@@ -1,18 +1,16 @@
 function Reviews() {
   Container.call(this, 'reviews');
 
+  this.classReviewsWrapper = 'reviews-wrapper';
   this.classReviewsItems = 'reviews-list';
-  this.classReviewsItemsList = 'items-list';
   this.classReviewsItem = 'item';
   this.classDeleteReviewIstem = 'remove-item';
 
+  this.classModerationWrapper = 'moderation-wrapper';
   this.classModerationItems = 'reviews-moderation-list';
   this.classModerationItemsGood = 'reviews-moderation-good';
 
-  this.reviewsItems = {
-    'reviews': [],
-    'moderation': []
-  };
+  this.reviewsItems = [];
   this.collectReviewsItems();
 }
 
@@ -21,11 +19,10 @@ Reviews.prototype.constructor = Reviews;
 
 Reviews.prototype.render = function (root) {
   var reviewsDiv = $('<div />', {
-        class: this.classReviewsItems,
+        class: this.classReviewsWrapper
       });
   var reviewsModerationDiv = $('<div />', {
-        class: this.classModerationItems,
-        text: 'На модерации:'
+        class: this.classModerationWrapper
       });
 
   reviewsDiv.appendTo(root);
@@ -45,15 +42,38 @@ Reviews.prototype.add = function (user, name, message) {
     "message": message,
     "moderated": false
   };
-  this.reviewsItems.moderation.push(reviewItem);
+  this.reviewsItems.push(reviewItem);
   this.refresh();
 };
 
-Reviews.prototype.delete = function (idReview, typeReview) {
-
+Reviews.prototype.delete = function (idReview) {
+  for (var index in this.reviewsItems) {
+    if (this.reviewsItems[index].id == idReview){
+      this.reviewsItems.splice(index, 1);
+      break;
+    }
+  }
+  this.refresh();
 };
 
-Reviews.prototype.htmlReviewsItems = function (items) {
+Reviews.prototype.moderated = function (idReview) {
+  for (var index in this.reviewsItems) {
+      if (this.reviewsItems[index].id == idReview){
+        this.reviewsItems[index].moderated = true;
+        break;
+      }
+  }
+  this.refresh()
+};
+
+Reviews.prototype.htmlReviewsItems = function (items, wrapperClass) {
+  var wrapper;
+  if ($('#' + this.id).has('.' + wrapperClass).length > 0){
+    wrapper = $('.' + wrapperClass);
+    wrapper.empty();
+  } else {
+    wrapper = $('<div />', { class: wrapperClass });
+  }
   for (var index in items) {
       var htmlItem = "";
       var itemDiv = $('<div />', {
@@ -63,17 +83,47 @@ Reviews.prototype.htmlReviewsItems = function (items) {
       htmlItem += this.htmlItem(items[index]);
 
       itemDiv.append(htmlItem);
+      wrapper.append(itemDiv);
   }
-  return itemDiv;
+  return wrapper;
 };
 
 Reviews.prototype.refresh = function () {
-  var reviewsItemsDiv = $('.' + this.classReviewsItems);
-  var moderationItemsDiv = $('.' + this.classModerationItems);
+  var reviewsDiv = $('.' + this.classReviewsWrapper);
+  var reviewsModerationDiv = $('.' + this.classModerationWrapper);
 
-  reviewsItemsDiv.empty();
-  reviewsItemsDiv.append(this.htmlReviewsItems(this.reviewsItems.reviews));
-  moderationItemsDiv.append(this.htmlReviewsItems(this.reviewsItems.moderation));
+  reviewsDiv.empty();
+  reviewsModerationDiv.empty();
+
+  var reviewsListDiv = $('<div />', {
+    class: this.classReviewsItems,
+    text: "Отзывы:"
+  });
+  var reviewsModerationListDiv = $('<div />', {
+    class: this.classModerationItems,
+    text: "На модерации:"
+  });
+
+  for (var index in this.reviewsItems) {
+      var htmlItem = "";
+      var itemDiv = $('<div />', {
+        class: this.classReviewsItem
+      });
+      htmlItem += this.htmlItem(this.reviewsItems[index]);
+      itemDiv.append(htmlItem);
+      if (this.reviewsItems[index].moderated){
+        reviewsListDiv.append(itemDiv);
+      } else {
+        reviewsModerationListDiv.append(itemDiv);
+      }
+  }
+
+  if (reviewsListDiv.has('.' + this.classReviewsItem).length > 0){
+    reviewsDiv.append(reviewsListDiv);
+  }
+  if (reviewsModerationListDiv.has('.' + this.classReviewsItem).length > 0){
+    reviewsModerationDiv.append(reviewsModerationListDiv);
+  }
 
   console.log(this.reviewsItems);
 };
@@ -84,7 +134,7 @@ Reviews.prototype.htmlItem = function (item) {
   html += '<p>Сообщение: ' + item.message + '</p>';
   html += '<a href="#" data-id-reviews="' + item.id + '" class="' + this.classDeleteReviewIstem + '">Удалить</a>';
   if (item.moderated === false){
-    html += '<a href="#" data-id-reviews="' + item.id + '" class="' + this.classDeleteReviewIstem + '">Одобрить</a>';
+    html += '<a href="#" data-id-reviews="' + item.id + '" class="' + this.classModerationItemsGood + '">Одобрить</a>';
   }
   return html;
 }
@@ -96,11 +146,7 @@ Reviews.prototype.collectReviewsItems = function () {
     success: function (data) {
       for (var index in data.reviews) {
         if (data.reviews[index].name != "" || data.reviews[index].message != ""){
-          if (data.reviews[index].moderated){
-            this.reviewsItems.reviews.push(data.reviews[index]);
-          } else {
-            this.reviewsItems.moderation.push(data.reviews[index]);
-          }
+            this.reviewsItems.push(data.reviews[index]);
         }
       }
 
