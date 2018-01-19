@@ -22,6 +22,16 @@ var moduleApp = {
   'checkReviews':function(){
     var reviews = new Reviews();
     reviews.render('#reviews');
+
+    $('.form-review').on('click', 'input[name="submit"]', function (e) {
+        e.preventDefault();
+        var user = $('input[name="user"]').val();
+        var name = $('input[name="name"]').val();
+        var message = $('textarea[name="message"]').val();
+        if (name != "" || message != ""){
+          reviews.add(user, name, message);
+        }
+    });
   }
 }
 

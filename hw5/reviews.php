@@ -13,12 +13,13 @@
 </head>
 <body>
   <div class="wrapper">
-    <form id="form-review" action="">
+    <form class="form-review" action="">
+      <input type="hidden" name="user" value="123456"/>
       <div class="form-input">
-        <input type="text" name="name" value="" placeholder="Введите имя" data-validate="text" />
+        <input type="text" name="name" value="" placeholder="Введите имя" />
       </div>
       <div class="form-input">
-        <textarea name="text" placeholder="Сообщение" data-validate="text"></textarea>
+        <textarea name="message" placeholder="Сообщение"></textarea>
       </div>
       <div class="form-submit">
         <input type="submit" name="submit" value="Send" class="js-form-submit" />

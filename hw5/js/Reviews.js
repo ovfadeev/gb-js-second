@@ -27,15 +27,21 @@ Reviews.prototype.render = function (root) {
         class: this.classModerationItems,
         text: 'На модерации:'
       });
-  console.log(reviewsDiv);
-  console.log(reviewsModerationDiv);
+
   reviewsDiv.appendTo(root);
   reviewsModerationDiv.appendTo(root);
 };
 
-Reviews.prototype.add = function (name, message) {
+Reviews.prototype.getNewId = function(){
+  // костыль для получения id
+  return parseInt(new Date().getTime()/1000); // unix time
+}
+
+Reviews.prototype.add = function (user, name, message) {
   var reviewItem = {
+    "user": parseInt(user),
     "name": name,
+    "id": this.getNewId(),
     "message": message,
     "moderated": false
   };
@@ -43,7 +49,7 @@ Reviews.prototype.add = function (name, message) {
   this.refresh();
 };
 
-Reviews.prototype.delete = function (idReview) {
+Reviews.prototype.delete = function (idReview, typeReview) {
 
 };
 
@@ -68,6 +74,8 @@ Reviews.prototype.refresh = function () {
   reviewsItemsDiv.empty();
   reviewsItemsDiv.append(this.htmlReviewsItems(this.reviewsItems.reviews));
   moderationItemsDiv.append(this.htmlReviewsItems(this.reviewsItems.moderation));
+
+  console.log(this.reviewsItems);
 };
 
 Reviews.prototype.htmlItem = function (item) {
