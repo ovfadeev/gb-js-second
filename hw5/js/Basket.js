@@ -83,6 +83,7 @@ Basket.prototype.refresh = function () {
   var count = 0;
   var amount = 0;
 
+
   basketItemsDiv.empty();
   basketDataDiv.empty();
   basketItemsListDiv.empty();
