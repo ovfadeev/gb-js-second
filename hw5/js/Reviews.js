@@ -124,8 +124,6 @@ Reviews.prototype.refresh = function () {
   if (reviewsModerationListDiv.has('.' + this.classReviewsItem).length > 0){
     reviewsModerationDiv.append(reviewsModerationListDiv);
   }
-
-  console.log(this.reviewsItems);
 };
 
 Reviews.prototype.htmlItem = function (item) {
