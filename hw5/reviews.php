@@ -13,14 +13,14 @@
 </head>
 <body>
   <div class="wrapper">
-    <div id="reviews">
-      <div class="reviews-list">
-        <div class="review-item">
-          
-        </div>
-      </div>
-      <div class="reviews-moderation-list"></div>
+    <div class="form-add-review">
+      <form>
+        <input type="text" name="name" value="" placeholder="Введите ваше имя">
+        <br/>
+        <input type="text" name="name" value="" placeholder="Введите ваше имя">
+      </form>
     </div>
+    <div id="reviews"></div>
   </div>
 </body>
 </html>
