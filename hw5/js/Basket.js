@@ -118,7 +118,6 @@ Basket.prototype.htmlItem = function (item) {
 }
 
 Basket.prototype.collectBasketItems = function () {
-  var countGoods = 0;
   $.ajax({
       url: 'ajax/getbasket.json',
       dataType: 'json',

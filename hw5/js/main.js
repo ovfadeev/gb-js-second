@@ -20,7 +20,8 @@ var moduleApp = {
     });
   },
   'checkReviews':function(){
-
+    var reviews = new Reviews();
+    reviews.render('#reviews');
   }
 }
 

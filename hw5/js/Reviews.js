@@ -27,10 +27,10 @@ Reviews.prototype.render = function (root) {
   reviewsDiv.appendTo(root);
 };
 
-Reviews.prototype.add = function (name, content) {
-  var basketItem = {
+Reviews.prototype.add = function (name, message) {
+  var reviewItem = {
     "name": name,
-    "content": content
+    "message": message
   };
 };
 
@@ -38,16 +38,42 @@ Reviews.prototype.delete = function (idReview) {
 
 };
 
-Reviews.prototype.collectreviewsItems = function () {
-  var countGoods = 0;
+Reviews.prototype.refresh = function () {
+  var reviewsItemsDiv = $('.' + this.classReviewsItems);
+
+  reviewsItemsDiv.empty();
+
+  for (var index in this.reviewsItems) {
+      var htmlItem = "";
+      var itemDiv = $('<div />', {
+        class: this.classReviewsItem
+      });
+
+      htmlItem += this.htmlItem(this.reviewsItems[index]);
+
+      itemDiv.append(htmlItem);
+      reviewsItemsDiv.append(itemDiv);
+  }
+};
+
+Basket.prototype.htmlItem = function (item) {
+  var html = "";
+  html += '<p>' + item.name + '</p>';
+  html += '<p>Сообщение: ' + item.message + '</p>';
+  html += '<a href="#" data-id-reviews="' + item.id + '" class="' + this.classDeleteReviewIstem + '">Удалить</a>';
+  return html;
+}
+
+Reviews.prototype.collectReviewsItems = function () {
   $.ajax({
     url: 'ajax/getreviews.json',
     dataType: 'json',
     success: function (data) {
-      for (var index in data.basket) {
-        this.reviewsItems.push(data.basket[index]);
+      for (var index in data.reviews) {
+        this.reviewsItems.push(data.reviews[index]);
       }
     },
     context: this
   });
+  this.refresh();
 };

@@ -27,3 +27,14 @@
   padding: 10px;
   border: 1px solid #ccc;
 }
+.reviews {
+
+}
+.reviews-list {
+  width: 50%;
+  float: left;
+}
+.reviews-moderation-list {
+  width: 50%;
+  float: left;
+}
