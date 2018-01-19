@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HW4 - Oleg Fadeev</title>
+    <title>HW5-1 - Oleg Fadeev</title>
     <link rel="stylesheet" href="css/main.css?<?=time()?>" />
 
     <script src="js/vendors/jquery-3.2.1.min.js"></script>
