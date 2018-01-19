@@ -66,28 +66,6 @@ Reviews.prototype.moderated = function (idReview) {
   this.refresh()
 };
 
-Reviews.prototype.htmlReviewsItems = function (items, wrapperClass) {
-  var wrapper;
-  if ($('#' + this.id).has('.' + wrapperClass).length > 0){
-    wrapper = $('.' + wrapperClass);
-    wrapper.empty();
-  } else {
-    wrapper = $('<div />', { class: wrapperClass });
-  }
-  for (var index in items) {
-      var htmlItem = "";
-      var itemDiv = $('<div />', {
-        class: this.classReviewsItem
-      });
-
-      htmlItem += this.htmlItem(items[index]);
-
-      itemDiv.append(htmlItem);
-      wrapper.append(itemDiv);
-  }
-  return wrapper;
-};
-
 Reviews.prototype.refresh = function () {
   var reviewsDiv = $('.' + this.classReviewsWrapper);
   var reviewsModerationDiv = $('.' + this.classModerationWrapper);
