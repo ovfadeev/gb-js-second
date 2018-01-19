@@ -59,7 +59,6 @@ Basket.prototype.add = function (idProduct, quantity, price, name) {
 
 Basket.prototype.delete = function (idProduct) {
   for (var index in this.basketItems) {
-    console.log(index);
     if (this.basketItems[index].id == idProduct){
       this.basketItems.splice(index, 1);
       break;
@@ -110,8 +109,6 @@ Basket.prototype.refresh = function () {
 
   basketItemsDiv.append(basketItemsListDiv);
   basketItemsDiv.append(basketDataDiv);
-
-  console.log(this.basketItems);
 };
 
 Basket.prototype.collectBasketItems = function () {

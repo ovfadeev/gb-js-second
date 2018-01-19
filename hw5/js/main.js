@@ -18,9 +18,13 @@ var moduleApp = {
 
         basket.delete(idPruduct);
     });
+  },
+  'checkReviews':function(){
+
   }
 }
 
 $(document).ready(function(){
   moduleApp.checkBasket();
+  moduleApp.checkReviews();
 });
