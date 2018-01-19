@@ -7,8 +7,8 @@
 
     <script src="js/vendors/jquery-3.2.1.min.js"></script>
     <script src="js/Container.js?<?=time()?>"></script>
-    <script src="js/basket.js?<?=time()?>"></script>
-    <script src="js/reviews.js?<?=time()?>"></script>
+    <script src="js/Basket.js?<?=time()?>"></script>
+    <script src="js/Reviews.js?<?=time()?>"></script>
     <script src="js/main.js?<?=time()?>"></script>
 </head>
 <body>

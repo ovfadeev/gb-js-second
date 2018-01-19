@@ -33,9 +33,9 @@ Basket.prototype.render = function (root) {
 
 Basket.prototype.update = function (item) {
   var update = false;
-  for(i = 0; i < this.basketItems.length; i++){
-    if (this.basketItems[i].id == item.id){
-      this.basketItems[i].quantity += item.quantity;
+  for (var index in this.basketItems) {
+    if (this.basketItems[index].id == item.id){
+      this.basketItems[index].quantity += item.quantity;
       update = true;
       break;
     }
@@ -46,11 +46,10 @@ Basket.prototype.update = function (item) {
 Basket.prototype.add = function (idProduct, quantity, price, name) {
     var basketItem = {
       "name": name,
-      "id": idProduct,
-      "quantity": quantity,
-      "price": price
+      "id": parseInt(idProduct),
+      "quantity": parseInt(quantity),
+      "price": parseInt(price)
     };
-
     if (this.update(basketItem) === false){
       this.basketItems.push(basketItem);
     }
@@ -95,7 +94,7 @@ Basket.prototype.refresh = function () {
       basketItemsListDiv.append(itemDiv);
 
       count += +this.basketItems[index].quantity;
-      amount = +this.basketItems[index].price * +this.basketItems[index].quantity;
+      amount += +this.basketItems[index].price * +this.basketItems[index].quantity;
   }
 
   this.countGoods = count;
@@ -106,6 +105,8 @@ Basket.prototype.refresh = function () {
 
   basketItemsDiv.append(basketItemsListDiv);
   basketItemsDiv.append(basketDataDiv);
+
+  console.log(this.basketItems);
 };
 
 Basket.prototype.htmlItem = function (item) {
