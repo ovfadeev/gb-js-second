@@ -98,33 +98,29 @@ var moduleApp = {
         if (mask == 'text') {
           if ((value.length < 1) || (value == placeHolder)) {
             noError = false;
-            $this.closest('.form-input').addClass('show-error');
             if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          }
         }
         if (mask == 'email') {
           var regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
           if (!regex.test(value) || (value == placeHolder)) {
             noError = false;
-            $this.closest('.form-input').addClass('show-error');
             if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          }
         }
         if (mask == 'phone') {
           var regex = /^\+7\(([0-9]{3})+\)([0-9]{3})+\-([0-9]{4})$/;
           if (!regex.test(value) || (value == placeHolder)) {
             noError = false;
-            $this.closest('.form-input').addClass('show-error');
             if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          }
         }
         if (mask == 'date') {
           var regex = /^([0-9]{2})+\.([0-9]{2})+\.([0-9]{4})$/;
           if (!regex.test(value)) {
             noError = false;
-            $this.closest('.form-input').addClass('show-error');
             if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          }
         }
         if (noError === false){
           arErrors.push(placeHolder);
