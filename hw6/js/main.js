@@ -55,15 +55,15 @@ var moduleApp = {
   },
   'viewFormErrors':function($input, noError = false){
     if (noError){
-      var borderLeftColor = "#2dec15";
-      var borderRightColor = "#2dec15";
+      var color = "#2dec15";
     } else {
-      var borderLeftColor = "#ec4015";
-      var borderRightColor = "#ec4015";
+      var color = "#ec4015";
     }
     $input.closest('.form-input').animate({
-      borderLeftColor: borderLeftColor,
-      borderRightColor: borderRightColor
+      borderTopColor: color,
+      borderLeftColor: color,
+      borderRightColor: color,
+      borderBottomColor: color
     });
   },
   'validationForm':function($submitBtn,submitFunction){
