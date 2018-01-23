@@ -54,52 +54,40 @@ var moduleApp = {
       }
     });
 
+    function checkError($inp, value, placeholder, onFocus, regex = ""){
+      var error = true;
+      if (((value.length < 1) || (regex != "" && !regex.test(value))) || (value == placeHolder)) {
+        error = false;
+        $inp.closest('.form-input').addClass('show-error');
+      } else { $inp.closest('.form-input').removeClass('show-error'); }
+      return error;
+    }
+
     function formChecking($inp,onFocus) {
-      onFocus = onFocus || false;
-      var noError = true;
+      var error;
       $inp.each(function(ind,elm){
         var $this = $(elm);
         var mask = $this.data('validate');
         var value = $this.val();
         var placeHolder = $this.attr('placeholder');
         if (mask == 'text') {
-          if ((value.length < 1) || (value == placeHolder)) {
-            noError = false;
-            $this.closest('.form-input').addClass('show-error');
-            if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
-        }
-        if (mask == 'textarea') {
-          if ((value.length < 1) || (value == placeHolder)) {
-            noError = false;
-            $this.closest('.form-textarea').addClass('show-error');
-            if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-textarea').removeClass('show-error'); }
+          error = checkError($this, value, placeHolder, onFocus);
         }
         if (mask == 'email') {
           var regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-          if (!regex.test(value) || (value == placeHolder)) {
-            noError = false;
-            $this.closest('.form-input').addClass('show-error');
-            if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          error = checkError($this, value, placeHolder, onFocus, regex);
         }
         if (mask == 'phone') {
           var regex = /^\+7\(([0-9]{3})+\)([0-9]{3})+\-([0-9]{4})$/;
-          if (!regex.test(value) || (value == placeHolder)) {
-            noError = false;
-            $this.closest('.form-input').addClass('show-error');
-            if (onFocus) { $this.focus(); onFocus = false; }
-          } else { $this.closest('.form-input').removeClass('show-error'); }
+          error = checkError($this, value, placeHolder, onFocus, regex);
         }
       });
-      return noError;
+      return error;
     }
   },
 }
 
 $(document).ready(function(){
   moduleApp.checkBasket();
-  moduleApp.checkReviews();
   moduleApp.validationForm();
 });

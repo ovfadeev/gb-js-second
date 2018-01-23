@@ -39,7 +39,7 @@
         <input type="text" name="phone" value="" placeholder="Введите телефон" data-validate="phone" />
       </div>
       <div class="form-input">
-        <textarea name="message" placeholder="Сообщение" data-validate="textarea"></textarea>
+        <textarea name="message" placeholder="Сообщение" data-validate="text"></textarea>
       </div>
       <div class="form-submit">
         <input type="submit" name="submit" value="Send" class="js-form-submit" />
