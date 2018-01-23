@@ -53,16 +53,28 @@ var moduleApp = {
     $htmlDialog.empty();
     $htmlDialog.append($htmlErrorsDialog);
   },
-  'viewFormErrors':function(){
-    $('.show-error').animate({
-      backgroundColor: "#ec4015"
+  'viewFormErrors':function($input, noError = false){
+    console.log($input);
+    console.log(noError);
+    if (noError){
+      var borderLeftColor = "#2dec15";
+      var borderRightColor = "#2dec15";
+    } else {
+      var borderLeftColor = "#ec4015";
+      var borderRightColor = "#ec4015";
+    }
+    $input.closest('.form-input').animate({
+      borderLeftColor: borderLeftColor,
+      borderRightColor: borderRightColor
     });
   },
   'validationForm':function($submitBtn,submitFunction){
+    var arErrors = [];
     $submitBtn = $submitBtn || $('.js-form-submit');
     submitFunction = submitFunction || false;
     $submitBtn.closest('form').addClass('is-form-validation');
     $submitBtn.click(function(e){
+      arErrors = [];
       var $this = $(this);
       if ($this.hasClass('disabled')) { return false; }
       var $form  = $this.closest('form');
@@ -76,6 +88,10 @@ var moduleApp = {
           return true;
         }
       } else {
+        if (arErrors.length > 0){
+          moduleApp.dialogErrors(arErrors);
+          //moduleApp.viewFormErrors();
+        }
         $forms.on('keyup keypress change', function() {
           var $current = $(this);
           setTimeout(function(){ formChecking($current); }, 50);
@@ -96,7 +112,6 @@ var moduleApp = {
     function formChecking($inp,onFocus) {
       onFocus = onFocus || false;
       var noError = true;
-      var arErrors = [];
       $inp.each(function(ind,elm){
         var $this = $(elm);
         var mask = $this.data('validate');
@@ -136,11 +151,8 @@ var moduleApp = {
         if (noError === false){
           arErrors.push(placeHolder);
         }
+        moduleApp.viewFormErrors($this, noError);
       });
-      if (arErrors.length > 0){
-        moduleApp.dialogErrors(arErrors);
-        moduleApp.viewFormErrors();
-      }
       return noError;
     }
   },
