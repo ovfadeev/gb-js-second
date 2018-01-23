@@ -5,16 +5,20 @@
     <title>HW6 - Oleg Fadeev</title>
     <link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.structure.css" />
+    <link rel="stylesheet" href="css/vendors/fotorama/fotorama.css" />
     <link rel="stylesheet" href="css/main.css?<?=time()?>" />
 
     <script src="js/vendors/jquery-3.2.1.min.js"></script>
     <script src="js/vendors/jquery-ui.min.js"></script>
-    <script src="js/Container.js?<?=time()?>"></script>
-    <script src="js/Basket.js?<?=time()?>"></script>
+    <script src="js/vendors/fotorama.js"></script>
     <script src="js/main.js?<?=time()?>"></script>
 </head>
 <body>
   <div class="wrapper">
+    <div class="fotorama">
+      <img src="images/1.jpg">
+      <img src="images/2.jpg">
+    </div>
     <form class="form-review" action="">
       <div class="form-input">
         <input type="text" name="name" value="" placeholder="Введите имя" data-validate="text" />
