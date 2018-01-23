@@ -33,8 +33,8 @@ var moduleApp = {
     $htmlDialog.empty();
     $htmlDialog.append($htmlErrorsDialog);
   },
-  'viewFormErrors':function($input, noError = false){
-    if (noError){
+  'viewFormErrors':function($input, error = false){
+    if (error){
       var color = "#2dec15";
     } else {
       var color = "#ec4015";
@@ -71,6 +71,7 @@ var moduleApp = {
           //moduleApp.viewFormErrors();
         }
         $forms.on('keyup keypress change', function() {
+          arErrors = [];
           var $current = $(this);
           formChecking($current);
         });
