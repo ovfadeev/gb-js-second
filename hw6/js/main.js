@@ -19,6 +19,31 @@ var moduleApp = {
         basket.delete(idPruduct);
     });
   },
+  'formDate':function(){
+    $('input[name="date"]').datepicker({
+      dateFormat: "dd.mm.yy",
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      dayNames: ["Воскресенье", "Понедельник", "Вторник", "Средя", "Четверг", "Пятница", "Суббота"],
+      dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      firstDay: 1,
+      maxDate: "-1y -1m", // максимальная дата рождения -1 год -1 месяц
+    });
+  },
+  'formErrors':function(arNameErrors){
+    $('.form-errors').dialog({
+      title: 'Ошибки формы',
+      dialogClass: "no-close",
+      buttons: [
+        {
+          text: "OK",
+          click: function() {
+            $( this ).dialog( "close" );
+          }
+        }
+      ]
+    });
+    $('.form-errors.ui-dialog-content').html();
+  },
   'validationForm':function($submitBtn,submitFunction){
     $submitBtn = $submitBtn || $('.js-form-submit');
     submitFunction = submitFunction || false;
@@ -54,35 +79,57 @@ var moduleApp = {
       }
     });
 
-    function checkError($inp, value, placeholder, onFocus, regex = ""){
-      var error = true;
-      if (((value.length < 1) || (regex != "" && !regex.test(value))) || (value == placeHolder)) {
-        error = false;
-        $inp.closest('.form-input').addClass('show-error');
-      } else { $inp.closest('.form-input').removeClass('show-error'); }
-      return error;
-    }
-
     function formChecking($inp,onFocus) {
-      var error = true;
+      onFocus = onFocus || false;
+      var noError = true;
+      var inpErrors = [];
       $inp.each(function(ind,elm){
         var $this = $(elm);
         var mask = $this.data('validate');
         var value = $this.val();
         var placeHolder = $this.attr('placeholder');
+
+        console.log(placeHolder);
         if (mask == 'text') {
-          error = checkError($this, value, placeHolder, onFocus);
+          if ((value.length < 1) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
         }
         if (mask == 'email') {
           var regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-          error = checkError($this, value, placeHolder, onFocus, regex);
+          if (!regex.test(value) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
         }
         if (mask == 'phone') {
           var regex = /^\+7\(([0-9]{3})+\)([0-9]{3})+\-([0-9]{4})$/;
-          error = checkError($this, value, placeHolder, onFocus, regex);
+          if (!regex.test(value) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
+        }
+        if (mask == 'date') {
+          var regex = /^([0-9]{2})+\.([0-9]{2})+\.([0-9]{4})$/;
+          if (!regex.test(value)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
+        }
+        if (noError === false){
+          inpErrors.push(placeHolder);
         }
       });
-      return error;
+      if (inpErrors.length > 0){
+        console.log(inpErrors);
+        moduleApp.formErrors(inpErrors);
+      }
+      return noError;
     }
   },
 }
@@ -90,13 +137,5 @@ var moduleApp = {
 $(document).ready(function(){
   moduleApp.checkBasket();
   moduleApp.validationForm();
-
-  $('input[name="date"]').datepicker({
-    dateFormat: "dd.mm.yy",
-    monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-    dayNames: ["Воскресенье", "Понедельник", "Вторник", "Средя", "Четверг", "Пятница", "Суббота"],
-    dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-    firstDay: 1,
-    maxDate: "-1y -1m", // максимальная дата рождения -1 год -1 месяц
-  });
+  moduleApp.formDate();
 });

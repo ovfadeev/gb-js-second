@@ -70,7 +70,7 @@
         <input type="email" name="email" value="" placeholder="Введите email" data-validate="email" />
       </div>
       <div class="form-input">
-        <input type="text" name="phone" value="" placeholder="Введите телефон" data-validate="phone" />
+        <input type="text" name="phone" value="" placeholder="+7(123)000-0000" data-validate="phone" />
       </div>
       <div class="form-input">
         <input type="text" name="date" value="" placeholder="Дата рождения" data-validate="date" />
@@ -82,6 +82,7 @@
         <input type="submit" name="submit" value="Send" class="js-form-submit" />
       </div>
     </form>
+    <div class="form-errors"></div>
   </div>
 </body>
 </html>
