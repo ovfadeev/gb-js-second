@@ -30,6 +30,7 @@ var moduleApp = {
     });
   },
   'formErrors':function(arNameErrors){
+    var $htmlErrorsDialog = $('<ul />');
     $('.form-errors').dialog({
       title: 'Ошибки формы',
       dialogClass: "no-close",
@@ -42,7 +43,15 @@ var moduleApp = {
         }
       ]
     });
-    $('.form-errors.ui-dialog-content').html();
+    for(var index in arNameErrors){
+      var $htmlError = $('<li />', {
+        text: arNameErrors[index]
+      });
+      $htmlErrorsDialog.append($htmlError);
+    }
+    var $htmlDialog = $('.form-errors.ui-dialog-content');
+    $htmlDialog.empty();
+    $htmlDialog.append($htmlErrorsDialog);
   },
   'validationForm':function($submitBtn,submitFunction){
     $submitBtn = $submitBtn || $('.js-form-submit');
@@ -88,8 +97,6 @@ var moduleApp = {
         var mask = $this.data('validate');
         var value = $this.val();
         var placeHolder = $this.attr('placeholder');
-
-        console.log(placeHolder);
         if (mask == 'text') {
           if ((value.length < 1) || (value == placeHolder)) {
             noError = false;
@@ -126,7 +133,6 @@ var moduleApp = {
         }
       });
       if (inpErrors.length > 0){
-        console.log(inpErrors);
         moduleApp.formErrors(inpErrors);
       }
       return noError;
