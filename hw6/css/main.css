@@ -36,6 +36,9 @@ form .form-input {
   margin-bottom: 10px;
   border: 1px solid #ccc;
 }
+form .form-input.show-error {
+  border-color: red;
+}
 form .form-input input {
   padding: 10px;
   font-family: 'Arial', sans-serif;

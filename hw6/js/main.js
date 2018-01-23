@@ -19,35 +19,87 @@ var moduleApp = {
         basket.delete(idPruduct);
     });
   },
-  'checkReviews':function(){
-    var reviews = new Reviews();
-    reviews.render('#reviews');
-
-    $('.form-review').on('click', 'input[name="submit"]', function (e) {
-        e.preventDefault();
-        var user = $('input[name="user"]').val();
-        var name = $('input[name="name"]').val();
-        var message = $('textarea[name="message"]').val();
-        if (name != "" || message != ""){
-          reviews.add(user, name, message);
+  'validationForm':function($submitBtn,submitFunction){
+    $submitBtn = $submitBtn || $('.js-form-submit');
+    submitFunction = submitFunction || false;
+    $submitBtn.closest('form').addClass('is-form-validation');
+    $submitBtn.click(function(e){
+      var $this = $(this);
+      if ($this.hasClass('disabled')) { return false; }
+      var $form  = $this.closest('form');
+      var $forms = $form.find('[data-validate]');
+      var result = formChecking($forms,true);
+      if (result) {
+        if (submitFunction) {
+          $this.addClass('disabled');
+          submitFunction();
+        } else {
+          return true;
         }
-    });
-    $('#reviews').on('click', '.reviews-moderation-good', function (e){
+      } else {
+        $forms.on('keyup keypress change', function() {
+          var $current = $(this);
+          setTimeout(function(){ formChecking($current); }, 50);
+        });
+      }
       e.preventDefault();
-      var idReview = parseInt($(this).attr('data-id-reviews'));
-
-      reviews.moderated(idReview);
     });
-    $('#reviews').on('click', '.remove-item', function (e){
-      e.preventDefault();
-      var idReview = parseInt($(this).attr('data-id-reviews'));
 
-      reviews.delete(idReview);
+    $(document).on('keydown',function(e){
+      if(e.keyCode == 13) {
+        var $thisFocus = $(document.activeElement);
+        if ($thisFocus.is('textarea')) { return true; alert('123'); }
+        if ($thisFocus.closest('.form-select').length) { return true; }
+        if ($thisFocus.closest('.is-form-validation').length) { $submitBtn.trigger('click'); }
+      }
     });
-  }
+
+    function formChecking($inp,onFocus) {
+      onFocus = onFocus || false;
+      var noError = true;
+      $inp.each(function(ind,elm){
+        var $this = $(elm);
+        var mask = $this.data('validate');
+        var value = $this.val();
+        var placeHolder = $this.attr('placeholder');
+        if (mask == 'text') {
+          if ((value.length < 1) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
+        }
+        if (mask == 'textarea') {
+          if ((value.length < 1) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-textarea').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-textarea').removeClass('show-error'); }
+        }
+        if (mask == 'email') {
+          var regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+          if (!regex.test(value) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
+        }
+        if (mask == 'phone') {
+          var regex = /^\+7\(([0-9]{3})+\)([0-9]{3})+\-([0-9]{4})$/;
+          if (!regex.test(value) || (value == placeHolder)) {
+            noError = false;
+            $this.closest('.form-input').addClass('show-error');
+            if (onFocus) { $this.focus(); onFocus = false; }
+          } else { $this.closest('.form-input').removeClass('show-error'); }
+        }
+      });
+      return noError;
+    }
+  },
 }
 
 $(document).ready(function(){
   moduleApp.checkBasket();
   moduleApp.checkReviews();
+  moduleApp.validationForm();
 });
