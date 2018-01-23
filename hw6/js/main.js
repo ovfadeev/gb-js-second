@@ -1,24 +1,4 @@
 var moduleApp = {
-  'checkBasket':function(){
-    var basket = new Basket();
-    basket.render('.basket-list');
-
-    $('.buyme').on('click', function () {
-        var idPruduct = parseInt($(this).attr('data-id-product'));
-        var name = $(this).parent().find('.name').html();
-        var quantity = parseInt($(this).parent().find('.quantity').val());
-        var price = parseInt($(this).attr('data-price'));
-
-        basket.add(idPruduct, quantity, price, name);
-    });
-
-    $('.basket-list').on('click', '.remove-item', function (e) {
-        e.preventDefault();
-        var idPruduct = parseInt($(this).attr('data-id-product'));
-
-        basket.delete(idPruduct);
-    });
-  },
   'formDate':function(){
     $('input[name="date"]').datepicker({
       dateFormat: "dd.mm.yy",
