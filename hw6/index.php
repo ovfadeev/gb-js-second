@@ -24,7 +24,7 @@
         <input type="email" name="email" value="" placeholder="Введите email" data-validate="email" />
       </div>
       <div class="form-input">
-        <input type="text" name="phone" value="" placeholder="+7(123)000-0000" data-validate="phone" />
+        <input type="text" name="phone" value="" placeholder="Введите телефон +7(123)000-0000" data-validate="phone" />
       </div>
       <div class="form-input">
         <input type="text" name="date" value="" placeholder="Дата рождения" data-validate="date" />
