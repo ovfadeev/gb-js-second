@@ -29,7 +29,7 @@ var moduleApp = {
       maxDate: "-1y -1m", // максимальная дата рождения -1 год -1 месяц
     });
   },
-  'formErrors':function(arNameErrors){
+  'dialogErrors':function(arNameErrors){
     var $htmlErrorsDialog = $('<ul />');
     $('.form-errors').dialog({
       title: 'Ошибки формы',
@@ -52,6 +52,11 @@ var moduleApp = {
     var $htmlDialog = $('.form-errors.ui-dialog-content');
     $htmlDialog.empty();
     $htmlDialog.append($htmlErrorsDialog);
+  },
+  'viewFormErrors':function(){
+    $('.show-error').animate({
+      backgroundColor: "#ec4015"
+    });
   },
   'validationForm':function($submitBtn,submitFunction){
     $submitBtn = $submitBtn || $('.js-form-submit');
@@ -91,7 +96,7 @@ var moduleApp = {
     function formChecking($inp,onFocus) {
       onFocus = onFocus || false;
       var noError = true;
-      var inpErrors = [];
+      var arErrors = [];
       $inp.each(function(ind,elm){
         var $this = $(elm);
         var mask = $this.data('validate');
@@ -129,11 +134,12 @@ var moduleApp = {
           } else { $this.closest('.form-input').removeClass('show-error'); }
         }
         if (noError === false){
-          inpErrors.push(placeHolder);
+          arErrors.push(placeHolder);
         }
       });
-      if (inpErrors.length > 0){
-        moduleApp.formErrors(inpErrors);
+      if (arErrors.length > 0){
+        moduleApp.dialogErrors(arErrors);
+        moduleApp.viewFormErrors();
       }
       return noError;
     }

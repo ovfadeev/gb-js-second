@@ -38,7 +38,7 @@ form .form-input {
   border: 1px solid #ccc;
 }
 form .form-input.show-error {
-  border-color: red;
+  //border-color: red;
 }
 form .form-input input {
   padding: 10px;
