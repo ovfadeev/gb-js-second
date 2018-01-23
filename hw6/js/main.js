@@ -64,7 +64,7 @@ var moduleApp = {
     }
 
     function formChecking($inp,onFocus) {
-      var error;
+      var error = true;
       $inp.each(function(ind,elm){
         var $this = $(elm);
         var mask = $this.data('validate');
@@ -90,4 +90,13 @@ var moduleApp = {
 $(document).ready(function(){
   moduleApp.checkBasket();
   moduleApp.validationForm();
+
+  $('input[name="date"]').datepicker({
+    dateFormat: "dd.mm.yy",
+    monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+    dayNames: ["Воскресенье", "Понедельник", "Вторник", "Средя", "Четверг", "Пятница", "Суббота"],
+    dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+    firstDay: 1,
+    maxDate: "-1y -1m", // максимальная дата рождения -1 год -1 месяц
+  });
 });
