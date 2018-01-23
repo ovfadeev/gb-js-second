@@ -105,8 +105,6 @@ Basket.prototype.refresh = function () {
 
   basketItemsDiv.append(basketItemsListDiv);
   basketItemsDiv.append(basketDataDiv);
-
-  console.log(this.basketItems);
 };
 
 Basket.prototype.htmlItem = function (item) {
