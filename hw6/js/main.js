@@ -72,7 +72,7 @@ var moduleApp = {
         }
         $forms.on('keyup keypress change', function() {
           var $current = $(this);
-          setTimeout(function(){ formChecking($current); }, 50);
+          formChecking($current);
         });
       }
       e.preventDefault();
@@ -133,7 +133,6 @@ var moduleApp = {
 }
 
 $(document).ready(function(){
-  moduleApp.checkBasket();
   moduleApp.validationForm();
   moduleApp.formDate();
 });

@@ -5,7 +5,6 @@
     <title>HW6 - Oleg Fadeev</title>
     <link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.structure.css" />
-    <link rel="stylesheet" href="css/vendors/jquery-ui/jquery-ui.structure.css" />
     <link rel="stylesheet" href="css/main.css?<?=time()?>" />
 
     <script src="js/vendors/jquery-3.2.1.min.js"></script>
