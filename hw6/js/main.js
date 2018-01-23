@@ -54,8 +54,6 @@ var moduleApp = {
     $htmlDialog.append($htmlErrorsDialog);
   },
   'viewFormErrors':function($input, noError = false){
-    console.log($input);
-    console.log(noError);
     if (noError){
       var borderLeftColor = "#2dec15";
       var borderRightColor = "#2dec15";
