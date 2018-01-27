@@ -73,6 +73,11 @@ body {
         padding: 10px 5px;
         outline: none;
       }
+      &.show-error {
+        input {
+          border: 1px solid #ff0d0d;
+        }
+      }
     }
     .checkbox-text {
       border-right: 1px solid $colorBorder;
