@@ -15,6 +15,9 @@ var pageApp = {
   },
   'page-checkout':function(){
     moduleApp.checkoutAccordion();
+  },
+  'page-cart':function(){
+    
   }
 }
 
@@ -152,6 +155,27 @@ var moduleApp = {
       var idPruduct = parseInt($(this).attr('data-id-product'));
 
       basket.delete(idPruduct);
+    });
+
+    $('.page-cart').on('click', '.remove-cart', function (e) {
+      e.preventDefault();
+      var idPruduct = parseInt($(this).attr('data-id-product'));
+
+      basket.delete(idPruduct);
+      $(this).closest('.cart-items').remove();
+    });
+
+    $('.page-cart').on('click', 'input[name="remove-cart"]', function (e) {
+      e.preventDefault();
+      var cartItems = $('a.remove-cart');
+
+      $.each(cartItems, function(key, item){
+        var $cartItem = $(item).closest('.cart-items');
+        var idPruduct = parseInt($(item).attr('data-id-product'));
+
+        basket.delete(idPruduct);
+        $cartItem.remove();
+      });
     });
   },
   'menuMobile':function(){
