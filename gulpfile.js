@@ -39,7 +39,9 @@ var config = {}
 // sass
 gulp.task('sass', function(){
   gulp.src(path.src.sass)
-    .pipe(sass())
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
     .pipe(gulp.dest(path.build.css));
 });
 
@@ -72,6 +74,7 @@ gulp.task('image', function(){
     .pipe(gulp.dest(path.build.images));
 });
 
+// fonts
 gulp.task('fonts', function(){
   gulp.src(path.src.fonts)
     .pipe(gulp.dest(path.build.fonts));

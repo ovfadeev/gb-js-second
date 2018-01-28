@@ -100,8 +100,6 @@ Basket.prototype.refresh = function () {
 
   basketCountDiv.append(this.countGoods);
   basketDataAmount.append(this.amount);
-
-  console.log(this.basketItems);
 };
 
 Basket.prototype.htmlItem = function (item) {

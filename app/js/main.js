@@ -20,6 +20,12 @@ var pageApp = {
 
 var moduleApp = {
   'init':function(){
+    this.searchDropdown();
+    this.subscribeSlider();
+    this.menuMobile();
+    this.basketDropdown();
+    this.checkBasket();
+    this.validationForm();
   },
   'searchDropdown':function(){
     $('.search-dropdown-title a').on('click', function(e){
@@ -241,28 +247,4 @@ var moduleApp = {
 $(document).ready(function(){
   moduleApp.init();
   pageApp.init();
-
-  /* --- search dropdown --- */
-  moduleApp.searchDropdown();
-  /* --- end --- */
-
-  /* --- subscribe slider --- */
-  moduleApp.subscribeSlider();
-  /* --- end --- */
-
-  /* --- menu mobile --- */
-  moduleApp.menuMobile();
-  /* --- end --- */
-
-  /* --- cart dropdown --- */
-  moduleApp.basketDropdown();
-  /* --- end --- */
-
-  /* --- check cart --- */
-  moduleApp.checkBasket();
-  /* --- end --- */
-
-  /* --- validation form --- */
-  moduleApp.validationForm();
-  /* --- end --- */
 });
