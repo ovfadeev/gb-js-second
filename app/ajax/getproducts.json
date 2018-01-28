@@ -1,0 +1,16 @@
+{
+  "result": true,
+  "items": [
+    {
+      "id": 123,
+      "name": "Товар №123",
+      "images": [
+        "images/product1.jpg",
+        "images/product-cart-small.jpg"
+      ],
+      "price": 200,
+      "quantity": 1,
+      "views": 10
+    },
+  ]
+}
