@@ -6,32 +6,32 @@ var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 
 var path = {
-    build: {
-        html: 'dist/',
-        js: 'dist/js/',
-        jsvendors: 'dist/js/vendors/',
-        css: 'dist/css/',
-        images: 'dist/images/',
-        fonts: 'dist/css/fonts/',
-        json: 'dist/ajax/'
-    },
-    src: {
-        html: 'app/html/*.html',
-        js: 'app/js/main.js',
-        jsvendors: 'app/js/vendors/**/*.js',
-        sass: 'app/sass/main.scss',
-        images: 'app/images/**/*.*',
-        fonts: 'app/fonts/**/*.*',
-        json: 'app/ajax/**/*.*'
-    },
-    watch: {
-        html: 'app/html/*.html',
-        js: 'app/js/**/*.js',
-        sass: 'app/sass/**/*.scss',
-        images: 'app/images/**/*.*',
-        fonts: 'app/fonts/**/*.*',
-        json: 'app/ajax/**/*.*'
-    }
+  build: {
+    html: 'dist/',
+    js: 'dist/js/',
+    jsvendors: 'dist/js/vendors/',
+    css: 'dist/css/',
+    images: 'dist/images/',
+    fonts: 'dist/css/fonts/',
+    json: 'dist/ajax/'
+  },
+  src: {
+    html: 'app/html/*.html',
+    js: 'app/js/main.js',
+    jsvendors: 'app/js/vendors/**/*.js',
+    sass: 'app/sass/main.scss',
+    images: 'app/images/**/*.*',
+    fonts: 'app/fonts/**/*.*',
+    json: 'app/ajax/**/*.*'
+  },
+  watch: {
+    html: 'app/html/*.html',
+    js: 'app/js/**/*.js',
+    sass: 'app/sass/**/*.scss',
+    images: 'app/images/**/*.*',
+    fonts: 'app/fonts/**/*.*',
+    json: 'app/ajax/**/*.*'
+  }
 };
 
 var config = {}
@@ -65,10 +65,10 @@ gulp.task('image', function(){
       imageMin.jpegtran({progressive: true}),
       imageMin.optipng({optimizationLevel: 5}),
       imageMin.svgo({
-          plugins: [
-              {removeViewBox: true},
-              {cleanupIDs: false}
-          ]
+        plugins: [
+          {removeViewBox: true},
+          {cleanupIDs: false}
+        ]
       })
     ]))
     .pipe(gulp.dest(path.build.images));
